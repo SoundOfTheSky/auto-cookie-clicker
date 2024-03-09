@@ -21,6 +21,21 @@ type GameSpell = {
   costPercent: number;
 };
 
+type GameGod = {
+  id: number;
+};
+
+type GameTempleMinigame = {
+  gods: {
+    ruin: GameGod;
+  };
+  swaps: number;
+  slot: [number, number, number];
+  slotHovered: number;
+  dragging?: GameGod;
+  dropGod: () => unknown;
+};
+
 type GameWizardMinigame = {
   magic: number;
   magicM: number;
@@ -50,7 +65,10 @@ declare const Game: {
   Objects: {
     Cursor: GameObject;
     'Wizard tower': GameObject & {
-      minigame: GameWizardMinigame;
+      minigame?: GameWizardMinigame;
+    };
+    Temple: GameObject & {
+      minigame?: GameTempleMinigame;
     };
   };
   ObjectsById: GameObject[];

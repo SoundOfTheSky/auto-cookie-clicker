@@ -42,6 +42,20 @@ function formatTime(time, min = 1) {
   }
   return output;
 }
+function assignGod(slot, godName) {
+  const minigame = Game.Objects.Temple.minigame;
+  if (!minigame)
+    return false;
+  const god = minigame.gods[godName];
+  if (minigame.swaps < 3)
+    return false;
+  if (minigame.slot[slot] !== god.id) {
+    minigame.slotHovered = slot;
+    minigame.dragging = god;
+    minigame.dropGod();
+  }
+  return true;
+}
 
 // src/buy.ts
 var autoBuyLoop = function() {
@@ -91,9 +105,10 @@ if (CLICK && COMBO)
       return;
     comboStartedCookies = Game.cookies;
     const wizardMinigame = Game.Objects["Wizard tower"].minigame;
-    if (wizardMinigame.magic === wizardMinigame.magicM)
+    if (wizardMinigame && wizardMinigame.magic === wizardMinigame.magicM)
       wizardMinigame.castSpell(wizardMinigame.spells["hand of fate"]);
-    Game.Objects["Cursor"].sell(Game.Objects["Cursor"].amount);
+    if (assignGod(0, "ruin"))
+      Game.Objects["Cursor"].sell(Game.Objects["Cursor"].amount);
   }, 1000);
 var comboStartedCookies = 0;
 

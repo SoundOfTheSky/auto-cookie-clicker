@@ -10,6 +10,7 @@
  */
 
 import { CLICK, COMBO } from './settings';
+import { assignGod } from './utils';
 
 if (CLICK && COMBO)
   setInterval(() => {
@@ -27,7 +28,8 @@ if (CLICK && COMBO)
     if (comboStartedCookies) return;
     comboStartedCookies = Game.cookies;
     const wizardMinigame = Game.Objects['Wizard tower'].minigame;
-    if (wizardMinigame.magic === wizardMinigame.magicM) wizardMinigame.castSpell(wizardMinigame.spells['hand of fate']);
-    Game.Objects['Cursor'].sell(Game.Objects['Cursor'].amount);
+    if (wizardMinigame && wizardMinigame.magic === wizardMinigame.magicM)
+      wizardMinigame.castSpell(wizardMinigame.spells['hand of fate']);
+    if (assignGod(0, 'ruin')) Game.Objects['Cursor'].sell(Game.Objects['Cursor'].amount);
   }, 1000);
 let comboStartedCookies = 0;

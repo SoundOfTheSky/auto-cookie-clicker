@@ -1,6 +1,8 @@
-export const BUY = true;
-export const CLICK = true;
-export const COMBO = true;
-export const SHIMMERS = true;
-export const LUMPS = true;
-export const CLICKS_PER_SECOND = 14;
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+
+export const BUY: boolean = true
+export const CLICK: boolean = true
+export const COMBO: boolean = true
+export const SHIMMERS: boolean = true
+export const LUMPS: boolean = true
+export const CLICKS_PER_SECOND: number = 14

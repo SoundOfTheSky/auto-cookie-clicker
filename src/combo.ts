@@ -9,27 +9,28 @@
  * Sum: ~21367x cookies per click
  */
 
-import { CLICK, COMBO } from './settings';
-import { assignGod } from './utils';
+import { CLICK, COMBO } from './settings'
+import { assignGod } from './utilities'
 
 if (CLICK && COMBO)
   setInterval(() => {
-    const buff = Game.buffs['Click frenzy'];
+    const buff = Game.buffs['Click frenzy']
     if (!buff) {
       if (comboStartedCookies) {
         Game.Notify(
           `[AUTO] Combo was successfully executed!`,
           `And we made ${Beautify(Game.cookies - comboStartedCookies)} cookies!`,
-        );
-        comboStartedCookies = 0;
+        )
+        comboStartedCookies = 0
       }
-      return;
+      return
     }
-    if (comboStartedCookies) return;
-    comboStartedCookies = Game.cookies;
-    const wizardMinigame = Game.Objects['Wizard tower'].minigame;
+    if (comboStartedCookies) return
+    comboStartedCookies = Game.cookies
+    const wizardMinigame = Game.Objects['Wizard tower'].minigame
     if (wizardMinigame && wizardMinigame.magic === wizardMinigame.magicM)
-      wizardMinigame.castSpell(wizardMinigame.spells['hand of fate']);
-    if (assignGod(0, 'ruin')) Game.Objects['Cursor'].sell(Game.Objects['Cursor'].amount);
-  }, 1000);
-let comboStartedCookies = 0;
+      wizardMinigame.castSpell(wizardMinigame.spells['hand of fate'])
+    if (assignGod(0, 'ruin'))
+      Game.Objects.Cursor.sell(Game.Objects.Cursor.amount)
+  }, 1000)
+let comboStartedCookies = 0
